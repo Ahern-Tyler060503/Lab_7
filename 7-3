@@ -1,0 +1,63 @@
+# Tyler Ahern
+# Lab 7-3 The Dice Game
+# Simulates a dice game
+# 10-11-21
+
+
+# add libraries needed
+import random
+
+# the main function
+def main():
+    print()
+
+    # intialize variables
+    endProgram = 'no'
+    playerOne = 'NO NAME'
+    playerTwo = 'NO NAME'
+
+    # call to inputNames
+    playerOne, playerTwo = inputNames(playerOne, playerTwo)
+
+    # while loop to run program again
+    while endProgram == 'no':
+        #populate variables
+        winnerName = 'NO NAME'
+        p1number = 0
+        p2number = 0
+
+        #call to rollDice
+        winnerName = rollDice(p1number, p2number, playerOne, playerTwo, winnerName)
+
+        #call to displayInfo
+        displayInfo(winnerName)
+
+        endProgram = input('Do you want to end program? (yes/no): ')
+        
+    # this function will get the players name
+    def inputNames(playerOne, playerTwo):
+        playerOne = input('Enter the name of Player one')
+        playerTwo = input('Enter the name of Player two')
+        return playerOne, playerTwo
+    
+
+    # this function will get the random values
+    def rollDice(p1number, p2number, playerOne, playerTwo, winnerName):
+        p1number = random.randint(1, 6)
+        p2number = random.randint(1, 6)
+        if p1number == p2number:
+            winnerName = 'TIE'
+        elif p1number > p2number:
+            winnerName = 'Player One'
+        else:
+            winnerName = 'Player Two'
+        return winnerName    
+        
+        
+
+    # this function displays the winnder
+    def displayInfo(winnerName):
+        print ('The winner is ', winnerName)
+
+    #calls main
+    main()
